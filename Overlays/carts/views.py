@@ -45,6 +45,8 @@ def cart(request):
         for cart_item in cart_items:
             total += cart_item.product.price * cart_item.quantity
             quantity += cart_item.quantity
+        tax = (2 * total)/100
+        grand_total = total + tax 
     except Cart.DoesNotExist:
         # Cart does not exist; cart_items already initialized as empty list
         pass
@@ -53,5 +55,7 @@ def cart(request):
         'total': total,
         'quantity': quantity,
         'cart_items': cart_items,
+        'tax'    : tax,
+        'grand_total' : grand_total,
     }
     return render(request, 'store/cart.html', context)
