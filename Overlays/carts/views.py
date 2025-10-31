@@ -77,3 +77,6 @@ def cart(request):
         'grand_total' : grand_total,
     }
     return render(request, 'store/cart.html', context)
+
+
+
